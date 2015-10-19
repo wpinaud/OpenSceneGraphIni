@@ -13,9 +13,7 @@
 		45F13D1D1BCF849D00BEBA19 /* libosgUtil.3.2.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45F13D181BCF849D00BEBA19 /* libosgUtil.3.2.1.dylib */; };
 		45F13D1E1BCF849D00BEBA19 /* libosgViewer.3.2.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45F13D191BCF849D00BEBA19 /* libosgViewer.3.2.1.dylib */; };
 		45F13D201BCF850F00BEBA19 /* libOpenThreads.3.2.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45F13D1F1BCF850F00BEBA19 /* libOpenThreads.3.2.1.dylib */; };
-		45F13D2D1BCF865600BEBA19 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 45F13D251BCF865600BEBA19 /* Makefile */; settings = {ASSET_TAGS = (); }; };
 		45F13D2E1BCF865600BEBA19 /* TP_OSG.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45F13D291BCF865600BEBA19 /* TP_OSG.cpp */; settings = {ASSET_TAGS = (); }; };
-		45F13D2F1BCF865600BEBA19 /* TP_OSG.o in Frameworks */ = {isa = PBXBuildFile; fileRef = 45F13D2A1BCF865600BEBA19 /* TP_OSG.o */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -50,6 +48,7 @@
 		45F13D2A1BCF865600BEBA19 /* TP_OSG.o */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.objfile"; path = TP_OSG.o; sourceTree = "<group>"; };
 		45F13D2B1BCF865600BEBA19 /* window04smash.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = window04smash.bmp; sourceTree = "<group>"; };
 		45F13D2C1BCF865600BEBA19 /* wood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wood.png; sourceTree = "<group>"; };
+		45F13D301BCFEDE300BEBA19 /* fond-neige.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "fond-neige.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +57,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				45F13D201BCF850F00BEBA19 /* libOpenThreads.3.2.1.dylib in Frameworks */,
-				45F13D2F1BCF865600BEBA19 /* TP_OSG.o in Frameworks */,
 				45F13D1A1BCF849D00BEBA19 /* libosg.3.2.1.dylib in Frameworks */,
 				45F13D1B1BCF849D00BEBA19 /* libosgDB.3.2.1.dylib in Frameworks */,
 				45F13D1C1BCF849D00BEBA19 /* libosgGA.3.2.1.dylib in Frameworks */,
@@ -97,6 +95,7 @@
 			children = (
 				45F13D211BCF865600BEBA19 /* cessna.osg */,
 				45F13D221BCF865600BEBA19 /* cow.osg */,
+				45F13D301BCFEDE300BEBA19 /* fond-neige.jpg */,
 				45F13D231BCF865600BEBA19 /* Fieldstone.png */,
 				45F13D241BCF865600BEBA19 /* fonts */,
 				45F13D251BCF865600BEBA19 /* Makefile */,
@@ -168,7 +167,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				45F13D2E1BCF865600BEBA19 /* TP_OSG.cpp in Sources */,
-				45F13D2D1BCF865600BEBA19 /* Makefile in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +253,7 @@
 		45F13D131BCF7C5400BEBA19 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LIBRARY = "libstdc++";
 				HEADER_SEARCH_PATHS = /opt/local/include;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -267,6 +266,7 @@
 		45F13D141BCF7C5400BEBA19 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LIBRARY = "libstdc++";
 				HEADER_SEARCH_PATHS = /opt/local/include;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

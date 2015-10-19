@@ -23,4 +23,4 @@ $(COBJS): %.o : %.cpp
 	$(CC) $(INCOSG) $(CFLAGS) -o $@ $< 
 
 clean: 
-	rm $(COBJS) $(EXE)
+	rm $(COBJS) $(EXE
