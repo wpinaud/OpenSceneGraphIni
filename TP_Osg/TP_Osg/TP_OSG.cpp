@@ -21,6 +21,8 @@
 //Position
 #include <osg/PositionAttitudeTransform>
 
+#include <osg/Fog>
+
 
 #include <iostream>
 
@@ -148,6 +150,7 @@ int main()
     osg::ref_ptr<osg::Group> lightGroup (new osg::Group());
     osg::ref_ptr<osg::StateSet> lightSS (lightGroup->getOrCreateStateSet());
     osg::ref_ptr<osg::LightSource> lightSource1 = new osg::LightSource;
+    osg::ref_ptr<osg::LightSource> lightSource2 = new osg::LightSource;
     
     //Create a local light
     osg::Vec4f lightPosition = osg::Vec4f(10.0,1.0,1.0,1.0);
@@ -165,7 +168,46 @@ int main()
     //Add to light source group
     lightGroup->addChild(lightSource1);
     
+    //Create a local light
+    osg::ref_ptr<osg::Light> myLight2 = new osg::Light;
+    myLight2->setLightNum(0);
+    myLight2->setPosition(osg::Vec4f(-20.0,10.0,10.0,1.0));
+    myLight2->setAmbient(osg::Vec4f(0.1f,0.9f,0.4f,1.0f));
+    myLight2->setDiffuse(osg::Vec4f(0.5,0.4f,0.1,1));
+    myLight2->setConstantAttenuation(0.1);
+    
+    //Set light source parameters
+    lightSource2->setLight(myLight2);
+    lightSource2->setStateSetModes(*lightSS.get(), osg::StateAttribute::ON);
+    
+    //Add to light source group
+    lightGroup->addChild(lightSource2);
+
+    
     //Light markers: small spheres
+    osg::ref_ptr<osg::ShapeDrawable> markerdrawable1 (new osg::ShapeDrawable(new osg::Sphere(osg::Vec3f(10.0,1.0,1.0),2)));
+    osg::ref_ptr<osg::ShapeDrawable> markerdrawable2 (new osg::ShapeDrawable(new osg::Sphere(osg::Vec3f(-20.0,10.0,10.0),2)));
+
+    markerdrawable1->setColor(osg::Vec4f(0.4f,0.4f,0.4f,0.4f));
+    markerdrawable2->setColor(osg::Vec4f(0.2f,0.1f,0.4f,1));
+    osg::ref_ptr<osg::Geode> lightGeode (new osg::Geode);
+    lightGroup->addChild(lightGeode);
+    lightGeode->addDrawable(markerdrawable1.get());
+    lightGeode->addDrawable(markerdrawable2.get());
+    
+/*FOG*/
+    osg::ref_ptr<osg::Fog> fog = new osg::Fog;
+    fog->setColor(osg::Vec4(0.1,0.4,0.9,0.9));
+    fog->setMode( osg::Fog::EXP2 );
+    fog->setDensity( 0.1f );
+    fog->setStart(20);
+    fog->setEnd(10);
+    osg::ref_ptr< osg::StateSet> fogSS (new osg::StateSet);
+    fogSS->setAttributeAndModes( fog.get(), osg::StateAttribute::ON );
+    fogSS->setMode( GL_FOG, osg::StateAttribute::ON );
+    root->setStateSet(fogSS);
+    
+
     
 /* SCENE GRAPH*/
 
@@ -264,7 +306,7 @@ int main()
     root->accept( infoVisitor );
     // Set the scene data
     viewer.setSceneData( root.get() );
-
+    viewer.getCamera()->setClearColor( osg::Vec4( 1,1,1,1 ) );
 /* START VIEWER */
 
 	//The viewer.run() method starts the threads and the traversals.
